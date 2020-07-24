@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "MarketPlace"
+    }
+  },
+  "defaultProject": "MarketPlace",
+  "cli": {
+    "analytics": "b2e0cb82-e809-450a-be5e-5dc914ef66ff"
+  }
 }

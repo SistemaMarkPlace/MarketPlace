@@ -12,6 +12,7 @@ export class HeaderPromotionComponent implements OnInit {
   path:String=Path.url;
   top_banner:object=null;
   preload:Boolean=false;
+  category:Object=null;
 
   constructor(private productsService:ProductsService) { }
 
@@ -19,7 +20,8 @@ export class HeaderPromotionComponent implements OnInit {
 
     this.preload=true;
 
-    this.productsService.getData().subscribe(resp=>{
+    this.productsService.getData()
+    .subscribe(resp=>{
       
       // console.log("resp",resp[Object.keys(resp)[1]]);
 
@@ -40,7 +42,9 @@ export class HeaderPromotionComponent implements OnInit {
       
       /*Devolvemos la vistaa */
 
+      
       this.top_banner=JSON.parse(resp[Object.keys(resp)[index]].top_banner);;
+      this.category=resp[Object.keys(resp)[index]].category;
 
       // console.log(this.top_banner)
       this.preload=false;

@@ -726,14 +726,14 @@ export class AppComponent implements OnInit {
         
             $(function() {
                 backgroundImage();
-                owlCarouselConfig();
+                // owlCarouselConfig();
                 siteToggleAction();
                 subMenuToggle();
                 masonry('.ps-masonry');
                 productFilterToggle();
                 tabs();
-                slickConfig();     
-                productLightbox();        
+                //slickConfig();     
+                //productLightbox();        
                 rating();
                 backToTop();
                 stickyHeader();
@@ -741,7 +741,7 @@ export class AppComponent implements OnInit {
                 // mapConfig();
                 modalInit();
                 searchInit();
-                countDown();
+                // countDown();
                 mainSlider();
                 parallax();
                 // stickySidebar();
@@ -749,7 +749,7 @@ export class AppComponent implements OnInit {
                 progressBar();
                 customScrollbar();
                 select2Cofig();
-                carouselNavigation();
+                // carouselNavigation();
                 dateTimePicker();
                 $('[data-toggle="tooltip"]').tooltip();
             });

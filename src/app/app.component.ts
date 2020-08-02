@@ -734,7 +734,7 @@ export class AppComponent implements OnInit {
                 tabs();
                 //slickConfig();     
                 //productLightbox();        
-                rating();
+                // rating();
                 backToTop();
                 stickyHeader();
                 filterSlider();
@@ -746,7 +746,7 @@ export class AppComponent implements OnInit {
                 parallax();
                 // stickySidebar();
                 accordion();
-                progressBar();
+                // progressBar();
                 customScrollbar();
                 select2Cofig();
                 // carouselNavigation();

@@ -91,6 +91,14 @@ export class HomeHotTodayComponent implements OnInit {
 				let galleryMix_1 = $(".galleryMix_1");
 				let galleryMix_2 = $(".galleryMix_2");
 				let galleryMix_3 = $(".galleryMix_3");
+				/*elementos de pferta */
+				let offer_1 = $(".offer_1");
+				let offer_2 = $(".offer_2");
+				let offer_3 = $(".offer_3");
+				/*elementos de reseñlas */
+				let review_1 = $(".review_1");
+				let review_2 = $(".review_2");
+				let review_3 = $(".review_3");
 				
 				/*recorremos todos los indices de producto */
 				
@@ -117,6 +125,104 @@ export class HomeHotTodayComponent implements OnInit {
 								
 							
 						}
+							/*Capturamos el array de ofertas de cada prodcuto */
+				
+				             let offer= JSON.parse($(offer_1[i]).attr("offer"));
+				             /*capturamos el precio de cada prodcuto */
+             
+				             let price=Number($(offer_1[i]).attr("price"));
+				             /*Preguntar si hay descuento */
+				             if(offer[0]=="Disccount"){
+			             
+				             	$(offer_1[i]).html(
+             
+				             		`<span>Save <br> S/.${(price * offer[1]/100).toFixed(2) }</span>`
+             
+				             	)
+             
+				             	$(offer_2[i]).html(`S/.${(price-(price * offer[1]/100)).toFixed(2)}`)	
+             
+				             }
+				             /*preguntamos si es precio fijo */
+				             if(offer[0] == "Fixed"){
+             
+				             	$(offer_1[i]).html(
+             
+				             		`<span>Save <br> S/.${(price-offer[1]).toFixed(2) }</span>`
+             
+				             	)
+             
+				             	$(offer_2[i]).html(`S/.${offer[1]}`)	
+             
+				             }
+				             /*DESCONTANDO FECHA AL CONTADOR */
+             
+				             $(offer_3[i]).attr("data-time",
+				             	
+				                      new Date(
+				                      	
+				                      	     parseInt(offer[2].split("-")[0]),
+				                      	     parseInt(offer[2].split("-")[1])-1,
+				                      	     parseInt(offer[2].split("-")[2])
+                      
+				                      		)
+				                      	
+									  )
+							/**calculamos las reseñas */
+							let totalReview=0;
+
+							for (let f= 0 ; f < JSON.parse($(review_1[i]).attr("reviews")).length ; f++) {
+
+								totalReview+=Number(JSON.parse($(review_1[i]).attr("reviews"))[f]["review"])
+							}
+								/*Imprimimos el total de las calificaciones por cada producto */
+								let rating=Math.round(totalReview/JSON.parse($(review_1[i]).attr("reviews")).length);
+								// console.log(rating)
+
+							$(review_3[i]).html(rating);
+
+							for(let f=1;f<=5;f++){
+
+								$(review_2[i]).append(
+									`<option value="2">${f}</option>`
+
+								)
+								if (rating==f) {
+									$(review_2[i]).children('option').val(1)
+									
+								}
+
+
+							}
+
+							// if (rating==0) {
+								
+							// 	$(review_2[i]).html(
+	
+							// 		`  <option value="2">1</option>
+							// 		   <option value="2">2</option>
+							// 		   <option value="2">3</option>
+							// 		   <option value="2">4</option>                                                            
+							// 		   <option value="2">5</option> `
+							// 	);
+
+							// }
+							// if (rating==1) {
+								
+							// 	$(review_2[i]).html(
+	
+							// 		`  <option value="1">1</option>
+							// 		   <option value="2">2</option>
+							// 		   <option value="2">3</option>
+							// 		   <option value="2">4</option>                                                            
+							// 		   <option value="2">5</option> `
+							// 	);
+
+							// }
+
+
+
+             
 				}
 
 
@@ -128,63 +234,30 @@ export class HomeHotTodayComponent implements OnInit {
 			
 
 			/*Selecciona del dom de los elementos de oferta */
-			let offer_1 = $(".offer_1");
-			let offer_2 = $(".offer_2");
-			let offer_3 = $(".offer_3");
+			// let offer_1 = $(".offer_1");
+			// let offer_2 = $(".offer_2");
+			// let offer_3 = $(".offer_3");
 			/*recorremos todos los indices de prodcuto */
 
-			for (let i = 0 ; i < offer_1.length ; i++) {
+			// for (let i = 0 ; i < offer_1.length ; i++) {
 
-				/*Capturamos el array de ofertas de cada prodcuto */
-				
-				let offer= JSON.parse($(offer_1[i]).attr("offer"));
-				/*capturamos el precio de cada prodcuto */
-
-				let price=Number($(offer_1[i]).attr("price"));
-				/*Preguntar si hay descuento */
-				if(offer[0]=="Disccount"){
 			
-					$(offer_1[i]).html(
+			CountDown.fnc();
+			Rating.fnc();
+			ProgressBar.fnc();
+					/*Seleccionamos los elementos de la reseña */
+					// let review_1 = $(".review_1");
+					// let review_2 = $(".review_2");
+					// let review_3 = $(".review_3");
+					/*recorremos los indices */
 
-						`<span>Save <br> S/.${(price * offer[1]/100).toFixed(2) }</span>`
-
-					)
-
-					$(offer_2[i]).html(`S/.${(price-(price * offer[1]/100)).toFixed(2)}`)	
-
-				}
-				/*preguntamos si es precio fijo */
-				if(offer[0] == "Fixed"){
-
-					$(offer_1[i]).html(
-
-						`<span>Save <br> S/.${(price-offer[1]).toFixed(2) }</span>`
-
-					)
-
-					$(offer_2[i]).html(`S/.${offer[1]}`)	
-
-				}
-				/*DESCONTANDO FECHA AL CONTADOR */
-
-				$(offer_3[i]).attr("data-time",
-					
-				         new Date(
-				         	
-				         	     parseInt(offer[2].split("-")[0]),
-				         	     parseInt(offer[2].split("-")[1])-1,
-				         	     parseInt(offer[2].split("-")[2])
-         
-				         		)
-				         	
-				         )
-
-				CountDown.fnc();
 
 				
-			}
+			// }
 		}
 
 	}
 
+
 }
+

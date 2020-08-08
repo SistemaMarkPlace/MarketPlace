@@ -9,10 +9,10 @@ import { Eror404Component } from './pages/eror404/eror404.component';
 const routes: Routes = [
 
   {path:'',component:HomeComponent},
-  {path:'products',component:ProductsComponent},
+  {path:'products/:param',component:ProductsComponent},
   {path:'product',component:ProductComponent},
   {path:'search',component:SearchComponent},
-  {path:'search',component:SearchComponent},
+  // {path:'search',component:SearchComponent},
   {path:'**',pathMatch:'full',component:Eror404Component}
 
 ];

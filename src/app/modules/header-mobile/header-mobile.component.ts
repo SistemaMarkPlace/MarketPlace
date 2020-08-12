@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import{Path} from '../../config.js';
+import { Search } from '../../functions';
 
 import {CategoriesService}  from  '../../services/categories.service';
 import {SubCategoriesService}  from  '../../services/sub-categories.service';
@@ -61,6 +62,18 @@ export class HeaderMobileComponent implements OnInit {
 			$(this).parent().children('ul').toggle();
 
 		})
+
+	}
+
+
+	goSearch(search:String){
+
+		if(search.length == 0 || Search.fnc(search) == undefined){
+
+			return;
+		}
+
+		window.open(`search/${Search.fnc(search)}`, '_top')
 
 	}
 

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Path} from '../../config.js';
+import { Search } from '../../functions';
 
 import {CategoriesService}  from  '../../services/categories.service';
 import {SubCategoriesService}  from  '../../services/sub-categories.service';
+//import { UsersService } from '../../services/users.service';
 
 declare var jQuery:any;
 declare var $:any;
@@ -15,7 +17,7 @@ declare var $:any;
 })
 export class HeaderComponent implements OnInit {
 
- 	path:String = Path.url;	
+	path:String = Path.url;	
 	categories:Object = null;
 	arrayTitleList:Array<any> = [];
 	render:Boolean = true;
@@ -51,6 +53,21 @@ export class HeaderComponent implements OnInit {
 
 		})
 	
+	}
+
+	/*=============================================
+	Declaramos función del buscador
+	=============================================*/
+
+	goSearch(search:String){
+
+		if(search.length == 0 || Search.fnc(search) == undefined){
+
+			return;
+		}
+
+		window.open(`search/${Search.fnc(search)}`, '_top')
+
 	}
 
 	/*=============================================

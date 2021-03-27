@@ -1,0 +1,14 @@
+#scrollUp {
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: url(scrollUp/arrowUp.jpg);
+    border-radius: 100%;
+    transition: 0.4;
+}
+
+#scrollUp:hover {
+    box-shadow: 1px 1px 3px 3px rgba(255, 255, 255, 0.5);
+    transform: scale(1.15, 1.15);
+}
